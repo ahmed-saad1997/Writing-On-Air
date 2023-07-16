@@ -1,0 +1,5 @@
+torch
+numpy
+mediapipe
+opencv-python
+argparse
