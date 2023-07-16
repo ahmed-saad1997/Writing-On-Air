@@ -1,15 +1,20 @@
 # Writing On Air
 
-Writing On Air is a project that recognizes handwritten text in the air using hand gestures captured through a camera. The project uses MediaPipe for hand landmark detection and a custom OCR system trained from scratch.
+This project is a machine learning implementation that enables users to write on air using hand gestures, and convert the handwritten text into digital text using Optical Character Recognition (OCR).
 
 ## Demo
 
-Check out our demo video to see Writing On Air in action!
+Check out  demo video to see Writing On Air in action!
 
-![Demo Video](demo.mp4)
+https://github.com/ahmed-saad1997/Writing-On-Air/assets/107448581/a9dc63bb-1977-4333-b61d-4c9d30c800ca
 
 The demo showcases real-time testing and includes an animation to demonstrate how the project works.
 
+## Description
+
+The project consists of two machine learning models. The first model is a hand landmark detection model, which is implemented using the Mediapipe pre-trained model. The second model is an OCR model, which is trained from scratch using Pytorch and a combination of the "IAM Online handwriting dataset" and "synthetic-data".
+
+The OCR model achieved an accuracy of 99% for character accuracy and 95% for word accuracy on the training set, and 93% for character accuracy and 80% for word accuracy on the validation set. The model was trained for 100 epochs.
 
 ## Getting Started
 
@@ -64,7 +69,8 @@ The datasets used in OCR training include:
 ## Credits
 
 - The hand landmark detection model was implemented using the Mediapipe pre-trained model.
-- The OCR model was trained from scratch using guides from "Modern Computer Vision with PyTorch" and a combination of the "IAM handwriting dataset" and "synthetic-data".
+- The OCR model was trained from scratch using guides from "Modern Computer Vision with PyTorch" (V Kishore Ayyadevara
+and Yeshwanth Reddy) Book and a combination of the "IAM handwriting dataset" and "synthetic-data".
 
 ## License
 
