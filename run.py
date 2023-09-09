@@ -52,7 +52,8 @@ while True:
         pr = ocr_model.predict(mask)
         if len(text.split('\n')[-1])+len(pr)>30:
             text += '\n'
-        text += ' '+pr
+        if len(pr)>0:
+            text += ' '+pr
         mask = np.ones((32, 128)
                       , dtype=np.uint8) * 255
         mask1 = np.zeros((int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), 3)
