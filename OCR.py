@@ -12,23 +12,29 @@ class OCRmodel(nn.Module):
                 '1', '9', '5', '8', '3', '4', '0', ',', '2', '7', '6', '/', '*', '?', '"']
     self.code_char = {i + 1: x for i, x in enumerate(self.vocap)}
     self.code_char.update({0: '-'})
-    self.model=nn.Sequential(
-        nn.Conv2d(1, 128, kernel_size=ks, stride=st, padding=pad),
-        nn.BatchNorm2d(128, momentum=0.3),
-        nn.ReLU(inplace=True),
-        nn.MaxPool2d(pool),
-        nn.Dropout2d(drop),
-        nn.Conv2d(128, 128, kernel_size=ks, stride=st, padding=pad),
-        nn.BatchNorm2d(128, momentum=0.3),
-        nn.ReLU(inplace=True),
-        nn.MaxPool2d(pool),
-        nn.Dropout2d(drop),
-        nn.Conv2d(128, 256, kernel_size=ks, stride=st, padding=pad),
-        nn.BatchNorm2d(256, momentum=0.3),
-        nn.ReLU(inplace=True),
-        nn.MaxPool2d((4,2)),
-        nn.Dropout2d(drop)
-    )
+    # self.model=nn.Sequential(
+    #     nn.Conv2d(1, 128, kernel_size=ks, stride=st, padding=pad),
+    #     nn.BatchNorm2d(128, momentum=0.3),
+    #     nn.ReLU(inplace=True),
+    #     nn.MaxPool2d(pool),
+    #     nn.Dropout2d(drop),
+    #     nn.Conv2d(128, 128, kernel_size=ks, stride=st, padding=pad),
+    #     nn.BatchNorm2d(128, momentum=0.3),
+    #     nn.ReLU(inplace=True),
+    #     nn.MaxPool2d(pool),
+    #     nn.Dropout2d(drop),
+    #     nn.Conv2d(128, 256, kernel_size=ks, stride=st, padding=pad),
+    #     nn.BatchNorm2d(256, momentum=0.3),
+    #     nn.ReLU(inplace=True),
+    #     nn.MaxPool2d((4,2)),
+    #     nn.Dropout2d(drop)
+    # )
+    self.model = vgg16_bn(pretrained=True).features.to(device)
+    self.model[0] = nn.Conv2d(1, 64, kernel_size=ks, stride=st, padding=pad)
+    self.model[-1] = nn.Sequential(nn.Conv2d(512, 256, kernel_size=ks, stride=st, padding=pad),
+                                   nn.Upsample(scale_factor=(1, 2), mode='nearest'),
+                                   nn.BatchNorm2d(256, momentum=0.3),
+                                   nn.ReLU(inplace=True))
     self.rnn=nn.Sequential(
         nn.LSTM(256, 256, num_layers=2, dropout=0.2, bidirectional=True)
     )
