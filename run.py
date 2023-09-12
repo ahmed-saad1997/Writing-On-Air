@@ -11,7 +11,7 @@ args=parser.parse_args()
 mediapipe_model = Mediapipe_Model()
 ocr_model = OCRmodel()
 ocr_model.to(device)
-pretrained_weights=torch.load('weights.pt',map_location=device)
+pretrained_weights=torch.load('ocr_weights(VGG16).pt',map_location=device)
 ocr_model.load_state_dict(pretrained_weights)
 
 cap = cv2.VideoCapture(0)
