@@ -2,6 +2,7 @@ import torch.nn as nn
 import torch
 import cv2
 import numpy as np
+from torchvision.models.vgg import vgg16_bn
 device=torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 class OCRmodel(nn.Module):
   def __init__(self,ks=3,st=1,pad=1,pool=2, drop=0.2,vocab_len=70):
