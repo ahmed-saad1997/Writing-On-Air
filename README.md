@@ -14,7 +14,7 @@ The demo showcases real-time testing and includes an animation to demonstrate ho
 
 The project consists of two machine learning models. The first model is a hand landmark detection model, which is implemented using the Mediapipe pre-trained model. The second model is an OCR model, which is trained from scratch using Pytorch and a combination of the "IAM Online handwriting dataset" and "synthetic-data".
 
-The OCR model achieved an accuracy of 99% for character accuracy and 95% for word accuracy on the training set, and 93% for character accuracy and 80% for word accuracy on the validation set. The model was trained for 100 epochs.
+The OCR model achieved an accuracy of 99% for character accuracy and 95% for word accuracy on the training set, and 93% for character accuracy and 83.4% for word accuracy on the validation set. The model was trained for 100 epochs.
 
 ## Getting Started
 
